@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+  </head>
+  <body>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+    <div class="container">
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">IMS</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item active">
+              <a class="nav-link" href="#">Home <span class="sr-only"></span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-item nav-link" href="#">Dashboard</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-item nav-link" href="#">Sales</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-item nav-link" href="#">Inventories</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-item nav-link" href="#">Stock</a>
+            </li>
+          </ul>
+        </div>
+      </nav> 
+
+   
+    <div class="container">
+        <div class="row">
+          <div class="col-4">
+            <nav class ="navbar bg-dark">
+                <ul class ="navbar-nav">
+                <li class ="nav-item">
+                <a  href="#"> Nav Menu </a>
+                </li>
+                <li class ="nav-item">
+                <a href="#"> Dashboard </a>
+                </li>
+                <li class ="nav-item">
+                <a  href="#"> Inventories </a>
+                </li>
+                <li class ="nav-item">
+                <a  href="#"> Sales </a>
+                </li>
+                <li class ="nav-item">
+                    <a  href="#"> Stock </a>
+                    </li>
+                <li class ="nav-item">
+                        <a  href="#"> Users </a>
+                 </li>
+                </ul>
+                </nav>
+          </div>
+
+
+          <div class="col-8">
+            <div class="container">
+              <div class="row">
+                <div class="col">
+                </div>
+                <div class="col">
+        <!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+  + Add new item
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form action="/productdata" method="post">
+          <label for="prname">Name</label><br>
+          <input type="text" id="prname" name="prname" value=""><br>
+          <label for="qname">Quantity</label><br>
+          <input type="text" id="qname" name="qname" value=""><br><br>
+          <label for="catname">Select category:</label><br>
+          <input type="text" id="catname" name="catname" value=""><br>
+          <label for="bpname">Buying Price</label><br>
+          <input type="text" id="bpname" name="bpname" value=""><br><br>
+          <label for="spname">Selling price:</label><br>
+          <input type="text" id="spname" name="spname" value=""><br><br>
+          <input type="submit" value="Submit">  
+
+
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>    
+            
+            </div>
+              </div>
+              <div class="row">
+                <div class="col-12">
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">name</th>
+                        <th scope="col">buying_price</th>
+                        <th scope="col">selling_price</th>
+                        <th scope="col">stock_quantity</th>
+                        <th scope="col">sale</th>
+                        <th scope="col">View sale</th>
+
+                      </tr>
+                    </thead>
+                    <tbody>
+                     {% for product in products %} 
+                      <tr>
+                        <td>{{product[0]}}</td>
+                        <td>{{product[1]}}</td>
+                        <td>{{product[2]}}</td>
+                        <td>{{product[3]}}</td>
+                        <td>
+                          <!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal{{product[0]}}">
+  $
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal{{product[0]}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form action="/saledata" method="post"  >
+          <input type="hidden" name="Item-id" value="{{product[0]}}">
+          <label for="qnae">Quantity</label><br>
+          <input type="text" id="qnae" name="qnae" value=""><br><br>
+          <input type="submit" value="Submit">  
+          </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+     <td><a href="/sale/{{product[0]}}" class="btn btn-primary">View sale</a> </td>
+                        </td>
+                      </tr>
+                      {% endfor %} 
+                    </tbody>
+                  </table>
+                </div>
+               
+               
+              </div>
+            </div>  
+          </div>
+
+        </div>
+
+
+
+
+</body>
+</html>
