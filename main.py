@@ -4,7 +4,8 @@ from flask import Flask,render_template,request,redirect
 
 import psycopg2
 app= Flask(__name__)
-conn=psycopg2.connect(user="postgres",password="pucci2020", host="127.0.0.1",port="5432",database="myduka")
+#conn=psycopg2.connect(user="postgres",password="pucci2020", host="127.0.0.1",port="5432",database="myduka")
+conn=psycopg2.connect(user="yevcxsepulljbn",password="db10b3e7c871f33c71d8783442b4ce718a073cc489cf445b8d20850ec46fee37", host="ec2-3-248-121-12.eu-west-1.compute.amazonaws.com",port="5432",database="d1mg4difddp615")
 
 #declare a cursor used to navigate in the database
 cur = conn.cursor()
